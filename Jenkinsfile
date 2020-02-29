@@ -18,6 +18,7 @@ pipeline {
 			post {
 				always {
 					junit 'build/test-results/**/*.xml'
+					step( [ $class: 'JacocoPublisher' ] )
 				}
 				success {
 					archiveArtifacts artifacts: 'build/libs/*.jar', fingerprint: true
