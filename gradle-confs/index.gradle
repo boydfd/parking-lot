@@ -1,0 +1,7 @@
+def settingDir = "${projectDir}/gradle-confs"
+project.ext.settingDir = settingDir
+apply from: "${settingDir}/dependencies.gradle"
+apply from: "${settingDir}/test.gradle"
+apply from: "${settingDir}/checkstyle/checkstyle.gradle"
+apply from: "${settingDir}/pmd/pmd.gradle"
+apply from: "${settingDir}/jacoco/jacoco.gradle"

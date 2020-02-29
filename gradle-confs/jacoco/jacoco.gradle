@@ -1,0 +1,32 @@
+apply plugin:'jacoco'
+
+
+// Configuring JaCoCo plugin settings
+jacoco {
+    toolVersion = "0.8.4"
+    //reportsDir = file("$buildDir/customJacocoReportDir")
+}
+
+jacocoTestCoverageVerification {
+    violationRules {
+        rule {
+            limit {
+                minimum = 0.85
+            }
+        }
+    }
+}
+
+
+//Configuring test task
+jacocoTestReport {
+    reports {
+        xml.enabled false
+        csv.enabled false
+        html.enabled true
+        html.destination file("${buildDir}/jacoco/jacocoHtml")
+    }
+}
+
+test.finalizedBy jacocoTestCoverageVerification
+test.finalizedBy jacocoTestReport
