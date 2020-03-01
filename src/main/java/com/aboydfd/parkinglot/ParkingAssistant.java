@@ -1,7 +1,9 @@
 package com.aboydfd.parkinglot;
 
+import java.util.HashSet;
 import java.util.List;
 import java.util.Map;
+import java.util.Set;
 
 import static java.util.function.Function.identity;
 import static java.util.stream.Collectors.toMap;
@@ -9,6 +11,7 @@ import static java.util.stream.Collectors.toMap;
 public class ParkingAssistant {
     private Map<ParkingLotId, ParkingLot> parkingLots;
     private final NaturalParkingOrder naturalParkingOrder;
+    private final Set<Receipt> receipts = new HashSet<>();
 
     public ParkingAssistant(List<ParkingLot> parkingLots,
                             NaturalParkingOrder naturalParkingOrder) {
@@ -20,7 +23,9 @@ public class ParkingAssistant {
         ParkingLot parkingLot = selectParkingLot();
         parkingLot.park(car);
         String validationNumber = "any vn";
-        return new Receipt(validationNumber, parkingLot.getId(), car);
+        Receipt receipt = new Receipt(validationNumber, parkingLot.getId(), car);
+        receipts.add(receipt);
+        return receipt;
     }
 
     private ParkingLot selectParkingLot() {
@@ -28,6 +33,10 @@ public class ParkingAssistant {
     }
 
     public Car takeBackCarWith(Receipt receipt) {
+        if (!receipts.contains(receipt)) {
+            throw new ReceiptInvalidException();
+        }
+
         return parkingLots
                 .get(receipt.getParkingLotId())
                 .takeBackCar(receipt.getCar());
