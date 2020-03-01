@@ -71,4 +71,20 @@ class ParkingAssistantTest {
         Receipt invalidReceipt = new Receipt("invalid number", parkingLotId2, car);
         assertThrows(ReceiptInvalidException.class, () -> parkingAssistant.takeBackCarWith(invalidReceipt));
     }
+
+    @Test
+    void car_is_already_took___take_back_car_with_last_receipt___exception_is_thrown() {
+        ParkingLotId parkingLotId1 = new ParkingLotId("pli 1");
+        ParkingLot parkingLot = new ParkingLot(2, parkingLotId1);
+        ParkingLotId parkingLotId2 = new ParkingLotId("pli 2");
+        ParkingLot parkingLot2 = new ParkingLot(1, parkingLotId2);
+        NaturalParkingOrder naturalParkingOrder =
+                new NaturalParkingOrder(newArrayList(parkingLotId1, parkingLotId2), 1);
+        ParkingAssistant parkingAssistant =
+                new ParkingAssistant(newArrayList(parkingLot, parkingLot2), naturalParkingOrder);
+        Car car = new Car("1");
+        Receipt receipt = parkingAssistant.park(car);
+        parkingAssistant.takeBackCarWith(receipt);
+        assertThrows(ReceiptInvalidException.class, () -> parkingAssistant.takeBackCarWith(receipt));
+    }
 }

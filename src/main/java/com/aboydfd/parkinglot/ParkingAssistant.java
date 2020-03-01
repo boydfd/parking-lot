@@ -37,8 +37,10 @@ public class ParkingAssistant {
             throw new ReceiptInvalidException();
         }
 
-        return parkingLots
+        Car car = parkingLots
                 .get(receipt.getParkingLotId())
                 .takeBackCar(receipt.getCar());
+        receipts.remove(receipt);
+        return car;
     }
 }
