@@ -1,0 +1,30 @@
+@startuml
+ParkingAssistant o--> "*" ParkingLot
+ParkingAssistant o-> "1" ParkingOrder
+ParkingAssistant o--> "*" Receipt
+Receipt o---> "1" Car
+Receipt o--> "1" ParkingLot
+ParkingLot o---> "*" Car
+
+class Car <<VO>> {
+String plateNumber
+}
+
+class ParkingLot <<Entity>> {
++void park(Car)
++Car getBackCar(Car)
+}
+
+
+class Receipt <<VO>> {
+-String validationNumber
+}
+
+class ParkingAssistant <<VO>> {
++Receipt parkCarTo(Car)
++Car getBackCar(Receipt)
+}
+class ParkingOrder <<VO>>
+
+
+@enduml
