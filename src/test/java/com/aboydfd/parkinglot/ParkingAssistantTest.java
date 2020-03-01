@@ -40,4 +40,9 @@ class ParkingAssistantTest {
         assertEquals(parkingLotId2, receipt2.getParkingLotId());
         assertEquals(parkingLotId1, receipt3.getParkingLotId());
     }
+
+    @Test
+    void car_is_parked___take_back_car_with_correct_receipt___car_can_be_took_back() {
+
+    }
 }
