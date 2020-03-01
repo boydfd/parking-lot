@@ -31,4 +31,9 @@ public class ParkingLot {
     ParkingLotId getId() {
         return parkingLotId;
     }
+
+    public Car takeBackCar(Car car) {
+        parkedCars.remove(car);
+        return car;
+    }
 }

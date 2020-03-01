@@ -43,6 +43,17 @@ class ParkingAssistantTest {
 
     @Test
     void car_is_parked___take_back_car_with_correct_receipt___car_can_be_took_back() {
-
+        ParkingLotId parkingLotId1 = new ParkingLotId("pli 1");
+        ParkingLot parkingLot = new ParkingLot(2, parkingLotId1);
+        ParkingLotId parkingLotId2 = new ParkingLotId("pli 2");
+        ParkingLot parkingLot2 = new ParkingLot(1, parkingLotId2);
+        NaturalParkingOrder naturalParkingOrder =
+                new NaturalParkingOrder(newArrayList(parkingLotId1, parkingLotId2), 1);
+        ParkingAssistant parkingAssistant =
+                new ParkingAssistant(newArrayList(parkingLot, parkingLot2), naturalParkingOrder);
+        Car car = new Car("1");
+        Receipt receipt = parkingAssistant.park(car);
+        Car carTookBack = parkingAssistant.takeBackCarWith(receipt);
+        assertEquals(car, carTookBack);
     }
 }

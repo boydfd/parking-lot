@@ -26,4 +26,10 @@ public class ParkingAssistant {
     private ParkingLot selectParkingLot() {
         return parkingLots.get(naturalParkingOrder.getNextParkingLotId());
     }
+
+    public Car takeBackCarWith(Receipt receipt) {
+        return parkingLots
+                .get(receipt.getParkingLotId())
+                .takeBackCar(receipt.getCar());
+    }
 }
