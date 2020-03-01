@@ -4,11 +4,13 @@ import java.util.HashSet;
 import java.util.Set;
 
 public class ParkingLot {
-    private final int limit;
-    Set<Car> parkedCars = new HashSet<>();
+    private int limit;
+    private final ParkingLotId parkingLotId;
+    private Set<Car> parkedCars = new HashSet<>();
 
-    public ParkingLot(int limit) {
+    public ParkingLot(int limit, ParkingLotId parkingLotId) {
         this.limit = limit;
+        this.parkingLotId = parkingLotId;
     }
 
     public void park(Car car) {
@@ -24,5 +26,9 @@ public class ParkingLot {
 
     boolean isExist(Car car) {
         return parkedCars.contains(car);
+    }
+
+    ParkingLotId getId() {
+        return parkingLotId;
     }
 }
