@@ -11,8 +11,12 @@ public class ParkingLotId {
 
     @Override
     public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
+        if (this == o) {
+            return true;
+        }
+        if (o == null || getClass() != o.getClass()) {
+            return false;
+        }
         ParkingLotId that = (ParkingLotId) o;
         return Objects.equals(id, that.id);
     }
