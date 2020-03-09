@@ -1,4 +1,4 @@
-package com.aboydfd.parkinglot;
+package com.aboydfd.domain.parkinglot;
 
 import java.util.Objects;
 

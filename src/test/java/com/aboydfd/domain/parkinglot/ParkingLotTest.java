@@ -1,4 +1,4 @@
-package com.aboydfd.parkinglot;
+package com.aboydfd.domain.parkinglot;
 
 import org.junit.jupiter.api.Test;
 

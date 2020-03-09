@@ -1,4 +1,4 @@
-package com.aboydfd.parkinglot;
+package com.aboydfd.domain.parkinglot;
 
 import java.util.HashSet;
 import java.util.Set;
@@ -28,7 +28,7 @@ public class ParkingLot {
         return parkedCars.contains(car);
     }
 
-    ParkingLotId getId() {
+    public ParkingLotId getId() {
         return parkingLotId;
     }
 

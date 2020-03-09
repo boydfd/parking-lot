@@ -1,4 +1,7 @@
-package com.aboydfd.parkinglot;
+package com.aboydfd.domain.parkingboy;
+
+
+import com.aboydfd.domain.parkinglot.*;
 
 import java.util.HashSet;
 import java.util.List;

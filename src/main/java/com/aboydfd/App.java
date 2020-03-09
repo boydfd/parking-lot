@@ -1,6 +1,11 @@
 package com.aboydfd;
 
-import com.aboydfd.parkinglot.*;
+import com.aboydfd.domain.parkingboy.NaturalParkingOrder;
+import com.aboydfd.domain.parkingboy.ParkingAssistant;
+import com.aboydfd.domain.parkinglot.Car;
+import com.aboydfd.domain.parkinglot.ParkingLot;
+import com.aboydfd.domain.parkinglot.ParkingLotId;
+import com.aboydfd.domain.parkinglot.Receipt;
 
 import java.util.stream.IntStream;
 
