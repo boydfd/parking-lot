@@ -4,12 +4,12 @@ import java.util.HashSet;
 import java.util.Set;
 
 public class ParkingLot {
-    private int limit;
+    private int space;
     private final ParkingLotId parkingLotId;
     private Set<Car> parkedCars = new HashSet<>();
 
-    public ParkingLot(int limit, ParkingLotId parkingLotId) {
-        this.limit = limit;
+    public ParkingLot(int space, ParkingLotId parkingLotId) {
+        this.space = space;
         this.parkingLotId = parkingLotId;
     }
 
@@ -19,7 +19,7 @@ public class ParkingLot {
     }
 
     private void limitationCheck() {
-        if (limit <= parkedCars.size()) {
+        if (space <= parkedCars.size()) {
             throw new MaxCarLimitReachedException();
         }
     }

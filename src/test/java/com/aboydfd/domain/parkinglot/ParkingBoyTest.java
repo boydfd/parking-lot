@@ -1,23 +1,23 @@
 package com.aboydfd.domain.parkinglot;
 
 import com.aboydfd.domain.parkingboy.NaturalParkingOrder;
-import com.aboydfd.domain.parkingboy.ParkingAssistant;
+import com.aboydfd.domain.parkingboy.ParkingBoy;
 import org.junit.jupiter.api.Test;
 
 import static com.google.common.collect.Lists.newArrayList;
 import static org.junit.jupiter.api.Assertions.*;
 
-class ParkingAssistantTest {
+class ParkingBoyTest {
     @Test
     void parking_lot_is_available___parking_a_car_by_parking_assistant___receipt_received() {
         ParkingLot parkingLot = new ParkingLot(1, new ParkingLotId("pli 1"));
         Car car = new Car("1");
-        ParkingAssistant parkingAssistant = new ParkingAssistant(newArrayList(parkingLot),
+        ParkingBoy parkingBoy = new ParkingBoy(newArrayList(parkingLot),
                 new NaturalParkingOrder(newArrayList(new ParkingLotId("pli 1")), 0));
-        Receipt receipt = parkingAssistant.park(car);
-        assertNotNull(receipt.getValidationNumber());
-        assertEquals(car, receipt.getCar());
-        assertEquals(new ParkingLotId("pli 1"), receipt.getParkingLotId());
+        Ticket ticket = parkingBoy.park(car);
+        assertNotNull(ticket.getValidationNumber());
+        assertEquals(car, ticket.getCar());
+        assertEquals(new ParkingLotId("pli 1"), ticket.getParkingLotId());
     }
 
     @Test
@@ -32,14 +32,14 @@ class ParkingAssistantTest {
         Car car = new Car("1");
         Car car2 = new Car("2");
         Car car3 = new Car("3");
-        ParkingAssistant parkingAssistant =
-                new ParkingAssistant(newArrayList(parkingLot, parkingLot2), naturalParkingOrder);
-        Receipt receipt = parkingAssistant.park(car);
-        Receipt receipt2 = parkingAssistant.park(car2);
-        Receipt receipt3 = parkingAssistant.park(car3);
-        assertEquals(parkingLotId1, receipt.getParkingLotId());
-        assertEquals(parkingLotId2, receipt2.getParkingLotId());
-        assertEquals(parkingLotId1, receipt3.getParkingLotId());
+        ParkingBoy parkingBoy =
+                new ParkingBoy(newArrayList(parkingLot, parkingLot2), naturalParkingOrder);
+        Ticket ticket = parkingBoy.park(car);
+        Ticket ticket2 = parkingBoy.park(car2);
+        Ticket ticket3 = parkingBoy.park(car3);
+        assertEquals(parkingLotId1, ticket.getParkingLotId());
+        assertEquals(parkingLotId2, ticket2.getParkingLotId());
+        assertEquals(parkingLotId1, ticket3.getParkingLotId());
     }
 
     @Test
@@ -50,11 +50,11 @@ class ParkingAssistantTest {
         ParkingLot parkingLot2 = new ParkingLot(1, parkingLotId2);
         NaturalParkingOrder naturalParkingOrder =
                 new NaturalParkingOrder(newArrayList(parkingLotId1, parkingLotId2), 1);
-        ParkingAssistant parkingAssistant =
-                new ParkingAssistant(newArrayList(parkingLot, parkingLot2), naturalParkingOrder);
+        ParkingBoy parkingBoy =
+                new ParkingBoy(newArrayList(parkingLot, parkingLot2), naturalParkingOrder);
         Car car = new Car("1");
-        Receipt receipt = parkingAssistant.park(car);
-        Car carTookBack = parkingAssistant.takeBackCarWith(receipt);
+        Ticket ticket = parkingBoy.park(car);
+        Car carTookBack = parkingBoy.takeBackCarWith(ticket);
         assertEquals(car, carTookBack);
     }
 
@@ -66,12 +66,12 @@ class ParkingAssistantTest {
         ParkingLot parkingLot2 = new ParkingLot(1, parkingLotId2);
         NaturalParkingOrder naturalParkingOrder =
                 new NaturalParkingOrder(newArrayList(parkingLotId1, parkingLotId2), 1);
-        ParkingAssistant parkingAssistant =
-                new ParkingAssistant(newArrayList(parkingLot, parkingLot2), naturalParkingOrder);
+        ParkingBoy parkingBoy =
+                new ParkingBoy(newArrayList(parkingLot, parkingLot2), naturalParkingOrder);
         Car car = new Car("1");
-        parkingAssistant.park(car);
-        Receipt invalidReceipt = new Receipt("invalid number", parkingLotId2, car);
-        assertThrows(ReceiptInvalidException.class, () -> parkingAssistant.takeBackCarWith(invalidReceipt));
+        parkingBoy.park(car);
+        Ticket invalidTicket = new Ticket("invalid number", parkingLotId2, car);
+        assertThrows(ReceiptInvalidException.class, () -> parkingBoy.takeBackCarWith(invalidTicket));
     }
 
     @Test
@@ -82,11 +82,11 @@ class ParkingAssistantTest {
         ParkingLot parkingLot2 = new ParkingLot(1, parkingLotId2);
         NaturalParkingOrder naturalParkingOrder =
                 new NaturalParkingOrder(newArrayList(parkingLotId1, parkingLotId2), 1);
-        ParkingAssistant parkingAssistant =
-                new ParkingAssistant(newArrayList(parkingLot, parkingLot2), naturalParkingOrder);
+        ParkingBoy parkingBoy =
+                new ParkingBoy(newArrayList(parkingLot, parkingLot2), naturalParkingOrder);
         Car car = new Car("1");
-        Receipt receipt = parkingAssistant.park(car);
-        parkingAssistant.takeBackCarWith(receipt);
-        assertThrows(ReceiptInvalidException.class, () -> parkingAssistant.takeBackCarWith(receipt));
+        Ticket ticket = parkingBoy.park(car);
+        parkingBoy.takeBackCarWith(ticket);
+        assertThrows(ReceiptInvalidException.class, () -> parkingBoy.takeBackCarWith(ticket));
     }
 }
