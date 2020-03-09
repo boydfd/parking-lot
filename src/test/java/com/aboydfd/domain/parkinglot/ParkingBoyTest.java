@@ -9,7 +9,7 @@ import static org.junit.jupiter.api.Assertions.*;
 
 class ParkingBoyTest {
     @Test
-    void parking_lot_is_available___parking_a_car_by_parking_assistant___receipt_received() {
+    void parking_lot_is_available___parking_a_car_by_parking_boy___ticket_received() {
         ParkingLot parkingLot = new ParkingLot(1, new ParkingLotId("pli 1"));
         Car car = new Car("1");
         ParkingBoy parkingBoy = new ParkingBoy(newArrayList(parkingLot),
@@ -22,7 +22,7 @@ class ParkingBoyTest {
 
     @Test
     void
-    parking_order_is_natural_order___parking_cars_by_parking_assistant___car_parked_to_correct_parking_lot_in_turn() {
+    parking_order_is_natural_order___parking_cars_by_parking_boy___car_parked_to_correct_parking_lot_in_turn() {
         ParkingLotId parkingLotId1 = new ParkingLotId("pli 1");
         ParkingLot parkingLot = new ParkingLot(2, parkingLotId1);
         ParkingLotId parkingLotId2 = new ParkingLotId("pli 2");
@@ -43,7 +43,7 @@ class ParkingBoyTest {
     }
 
     @Test
-    void car_is_parked___take_back_car_with_correct_receipt___car_can_be_took_back() {
+    void car_is_parked___take_back_car_with_correct_ticket___car_can_be_took_back() {
         ParkingLotId parkingLotId1 = new ParkingLotId("pli 1");
         ParkingLot parkingLot = new ParkingLot(2, parkingLotId1);
         ParkingLotId parkingLotId2 = new ParkingLotId("pli 2");
@@ -59,7 +59,7 @@ class ParkingBoyTest {
     }
 
     @Test
-    void car_is_parked___take_back_car_with_invalid_receipt___exception_is_thrown() {
+    void car_is_parked___take_back_car_with_invalid_ticket___exception_is_thrown() {
         ParkingLotId parkingLotId1 = new ParkingLotId("pli 1");
         ParkingLot parkingLot = new ParkingLot(2, parkingLotId1);
         ParkingLotId parkingLotId2 = new ParkingLotId("pli 2");
@@ -75,7 +75,7 @@ class ParkingBoyTest {
     }
 
     @Test
-    void car_is_already_took___take_back_car_with_last_receipt___exception_is_thrown() {
+    void car_is_already_took___take_back_car_with_last_ticket___exception_is_thrown() {
         ParkingLotId parkingLotId1 = new ParkingLotId("pli 1");
         ParkingLot parkingLot = new ParkingLot(2, parkingLotId1);
         ParkingLotId parkingLotId2 = new ParkingLotId("pli 2");
