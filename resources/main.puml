@@ -1,6 +1,14 @@
 @startuml
 
-package ParkingManagerAggregate {
+ParkingService ..> ParkingManager
+ParkingService ..> ParkingLot
+ParkingService ..> ParkingBoy
+
+class ParkingService <<Domain Service>> {
+	+ Ticket parkCar(Car)
+}
+
+package ParkingManager {
 	class ParkingManager <<VO>> {
 		+ List<ParkingBoy>
 		+ ParkingBoy findAvailableParkingBoy()
