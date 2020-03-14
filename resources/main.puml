@@ -1,53 +1,64 @@
 @startuml
 
-package ParkingLot {
-	class ParkingLot <<Entity>> <<Aggregate>> {
-	- int space
-	- ParkingLotId id
-	+void park(Car)
-	+Car getBackCar(Car)
+package ParkingManagerAggregate {
+	class ParkingManager <<VO>> {
+		+ List<ParkingBoy>
+		+ ParkingBoy findAvailableParkingBoy()
 	}
 
-	class Car <<VO>> {
-	- String plateNumber
+	class ParkingManagerConfig <<Entity>> <<Aggregate>> {
+		+ List<ParkingBoyId>
+		+ Car findAvailableParkingBoy(Ticket)
 	}
 
-	class Ticket <<VO>> {
-	- ParkingLotId id
-	- String validationNumber
-	}
-
-	Ticket *--> "1" Car
-	ParkingLot o--> "*" Car
-	ParkingLot o--> "*" Ticket
+	ParkingManagerConfig .>  ParkingManager
 }
 
 package ParkingBoy {
 	interface ParkingStrategy <<VO>> {
-	+ findAvailableParkingLot(List<ParkingLot>)
+		+ findAvailableParkingLot(List<ParkingLot>)
 	}
 
-	class ParkingBoy <<Entity>> <<Aggregate>> {
-	- List<ParkingLotId> parkingLots
-	+ ParkingLot findAvailableParkingLot()
+	class ParkingBoy <<VO>> {
+		- List<ParkingLot> parkingLots
+		+ ParkingLot findAvailableParkingLot()
 	}
 
-	ParkingBoy o--> "*" ParkingLot
+	class ParkingBoyConfig <<Entity>> <<Aggregate>> {
+		- List<ParkingLotId> parkingLots
+		- ParkingStrategyEnum parkingStrategy
+	}
+	ParkingManager ..>  ParkingBoy
+	ParkingBoyConfig .> ParkingBoy
 	ParkingBoy o--> "1" ParkingStrategy
 	ParkingStrategy <|.. NaturalParkingStrategy
 	ParkingStrategy <|.. MaxSpaceFirstParkingStrategy
 
 }
 
-class ParkingManager <<DomainService>> {
-+ Ticket park(Car)
-+ Car getBackCar(Ticket)
+package ParkingLot {
+
+	class ParkingLot <<Entity>> <<Aggregate>> {
+		- int space
+		- ParkingLotId id
+		+ Ticket park(Car)
+		+ Car getBackCar(Car)
+	}
+
+	class Car <<VO>> {
+		- String plateNumber
+	}
+
+	class Ticket <<VO>> {
+		- ParkingLotId id
+		- String validationNumber
+	}
+
+	ParkingBoy o-> "*" ParkingLot
+	Ticket *--> "1" Car
+	ParkingLot o--> "*" Car
+	ParkingLot o--> "*" Ticket
 }
-
-ParkingManager .>  ParkingBoy
-ParkingManager ..>  ParkingLot
-ParkingManager ...>  Ticket
-
 
 
 @enduml
