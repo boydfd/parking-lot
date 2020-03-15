@@ -3,6 +3,7 @@ package com.aboydfd.domain.parkingmanager;
 import com.aboydfd.domain.parkingboy.ParkingBoy;
 
 import java.util.List;
+import java.util.Optional;
 
 public class ParkingManager {
     private final List<ParkingBoy> parkingBoys;
@@ -11,7 +12,7 @@ public class ParkingManager {
         this.parkingBoys = parkingBoys;
     }
 
-    public ParkingBoy findAvailableParkingBoy() {
-        return parkingBoys.stream().filter(ParkingBoy::isAvailable).findAny().get();
+    public Optional<ParkingBoy> findAvailableParkingBoy() {
+        return parkingBoys.stream().filter(ParkingBoy::isAvailable).findAny();
     }
 }

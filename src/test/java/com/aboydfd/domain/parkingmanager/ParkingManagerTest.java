@@ -6,8 +6,10 @@ import com.aboydfd.domain.parkinglot.ParkingLot;
 import com.aboydfd.domain.parkinglot.ParkingLotId;
 import org.junit.jupiter.api.Test;
 
+import java.util.Optional;
+
 import static com.google.common.collect.Lists.newArrayList;
-import static org.junit.jupiter.api.Assertions.assertNotNull;
+import static org.junit.jupiter.api.Assertions.*;
 
 public class ParkingManagerTest {
     @Test
@@ -19,7 +21,21 @@ public class ParkingManagerTest {
         ParkingBoy parkingBoy =
                 new ParkingBoy(newArrayList(parkingLot), naturalParkingOrder);
         ParkingManager parkingManager = new ParkingManager(newArrayList(parkingBoy));
-        ParkingBoy availableParkingBoy = parkingManager.findAvailableParkingBoy();
-        assertNotNull(availableParkingBoy);
+
+        Optional<ParkingBoy> availableParkingBoy = parkingManager.findAvailableParkingBoy();
+        assertTrue(availableParkingBoy.isPresent());
+        assertNotNull(availableParkingBoy.get());
+    }
+
+    @Test
+    void no_available_parking_boy___find_a_parking_boy___null_returned() {
+        ParkingLotId parkingLotId1 = new ParkingLotId("pli 1");
+        ParkingLot parkingLot = new ParkingLot(0, parkingLotId1);
+        NaturalParkingOrder naturalParkingOrder =
+                new NaturalParkingOrder(newArrayList(parkingLotId1), 0);
+        ParkingBoy parkingBoy =
+                new ParkingBoy(newArrayList(parkingLot), naturalParkingOrder);
+        ParkingManager parkingManager = new ParkingManager(newArrayList(parkingBoy));
+        assertFalse(parkingManager.findAvailableParkingBoy().isPresent());
     }
 }

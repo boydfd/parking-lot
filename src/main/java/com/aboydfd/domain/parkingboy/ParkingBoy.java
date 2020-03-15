@@ -19,7 +19,7 @@ public class ParkingBoy {
     }
 
     public boolean isAvailable() {
-        return true;
+        return parkingLots.values().stream().anyMatch(ParkingLot::isAvailable);
     }
 
     public ParkingLot selectParkingLot() {

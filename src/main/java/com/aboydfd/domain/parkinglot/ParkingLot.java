@@ -24,9 +24,13 @@ public class ParkingLot {
     }
 
     private void limitationCheck() {
-        if (space <= parkedCars.size()) {
+        if (!isAvailable()) {
             throw new MaxCarLimitReachedException();
         }
+    }
+
+    public boolean isAvailable() {
+        return space > parkedCars.size();
     }
 
     boolean isExist(Car car) {
