@@ -18,6 +18,10 @@ public class ParkingBoy {
         this.naturalParkingOrder = naturalParkingOrder;
     }
 
+    public boolean isAvailable() {
+        return true;
+    }
+
     public ParkingLot selectParkingLot() {
         return parkingLots.get(naturalParkingOrder.getNextParkingLotId());
     }
