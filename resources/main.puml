@@ -34,7 +34,7 @@ package ParkingBoy {
 
 	class ParkingBoyConfig <<Entity>> <<Aggregate>> {
 		- List<ParkingLotId> parkingLots
-		- ParkingStrategyEnum parkingStrategy
+		- ParkingStrategyEnum parkingStrategyEnum
 	}
 	ParkingManager ..>  ParkingBoy
 	ParkingBoyConfig .> ParkingBoy

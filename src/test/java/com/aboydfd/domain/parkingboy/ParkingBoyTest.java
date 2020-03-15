@@ -1,7 +1,5 @@
 package com.aboydfd.domain.parkingboy;
 
-import com.aboydfd.domain.parkingboy.NaturalParkingOrder;
-import com.aboydfd.domain.parkingboy.ParkingBoy;
 import com.aboydfd.domain.parkinglot.Car;
 import com.aboydfd.domain.parkinglot.ParkingLot;
 import com.aboydfd.domain.parkinglot.ParkingLotId;
@@ -20,13 +18,13 @@ class ParkingBoyTest {
         ParkingLot parkingLot = new ParkingLot(2, parkingLotId1);
         ParkingLotId parkingLotId2 = new ParkingLotId("pli 2");
         ParkingLot parkingLot2 = new ParkingLot(1, parkingLotId2);
-        NaturalParkingOrder naturalParkingOrder =
-                new NaturalParkingOrder(newArrayList(parkingLotId1, parkingLotId2), 0);
+        NaturalParkingStrategy naturalParkingStrategy =
+                new NaturalParkingStrategy(newArrayList(parkingLotId1, parkingLotId2), 0);
         Car car = new Car("1");
         Car car2 = new Car("2");
         Car car3 = new Car("3");
         ParkingBoy parkingBoy =
-                new ParkingBoy(newArrayList(parkingLot, parkingLot2), naturalParkingOrder);
+                new ParkingBoy(newArrayList(parkingLot, parkingLot2), naturalParkingStrategy);
         Ticket ticket = parkingBoy.selectParkingLot().park(car);
         Ticket ticket2 = parkingBoy.selectParkingLot().park(car2);
         Ticket ticket3 = parkingBoy.selectParkingLot().park(car3);

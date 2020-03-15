@@ -10,12 +10,12 @@ import static java.util.stream.Collectors.toMap;
 
 public class ParkingBoy {
     private Map<ParkingLotId, ParkingLot> parkingLots;
-    private final NaturalParkingOrder naturalParkingOrder;
+    private final ParkingStrategy parkingStrategy;
 
     public ParkingBoy(List<ParkingLot> parkingLots,
-                      NaturalParkingOrder naturalParkingOrder) {
+                      ParkingStrategy parkingStrategy) {
         this.parkingLots = parkingLots.stream().collect(toMap(ParkingLot::getId, identity()));
-        this.naturalParkingOrder = naturalParkingOrder;
+        this.parkingStrategy = parkingStrategy;
     }
 
     public boolean isAvailable() {
@@ -23,7 +23,7 @@ public class ParkingBoy {
     }
 
     public ParkingLot selectParkingLot() {
-        return parkingLots.get(naturalParkingOrder.getNextParkingLotId());
+        return parkingLots.get(parkingStrategy.getNextParkingLotId());
     }
 
 }

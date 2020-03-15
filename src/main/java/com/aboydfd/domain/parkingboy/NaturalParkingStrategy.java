@@ -4,11 +4,11 @@ import com.aboydfd.domain.parkinglot.ParkingLotId;
 
 import java.util.List;
 
-public class NaturalParkingOrder {
+public class NaturalParkingStrategy implements ParkingStrategy {
     private final List<ParkingLotId> parkingLotIds;
     private int currentIndex;
 
-    public NaturalParkingOrder(List<ParkingLotId> parkingLotIds, int currentIndex) {
+    public NaturalParkingStrategy(List<ParkingLotId> parkingLotIds, int currentIndex) {
         this.parkingLotIds = parkingLotIds;
         this.currentIndex = currentIndex;
     }

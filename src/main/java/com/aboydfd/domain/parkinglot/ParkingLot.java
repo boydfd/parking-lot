@@ -1,9 +1,11 @@
 package com.aboydfd.domain.parkinglot;
 
+import com.aboydfd.domain.Entity;
+
 import java.util.HashSet;
 import java.util.Set;
 
-public class ParkingLot {
+public class ParkingLot implements Entity<ParkingLotId> {
     private int space;
     private final ParkingLotId parkingLotId;
     private Set<Car> parkedCars = new HashSet<>();
