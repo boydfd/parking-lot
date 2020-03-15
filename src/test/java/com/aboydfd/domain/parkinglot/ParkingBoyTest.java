@@ -23,9 +23,9 @@ class ParkingBoyTest {
         Car car3 = new Car("3");
         ParkingBoy parkingBoy =
                 new ParkingBoy(newArrayList(parkingLot, parkingLot2), naturalParkingOrder);
-        Ticket ticket = parkingBoy.park(car);
-        Ticket ticket2 = parkingBoy.park(car2);
-        Ticket ticket3 = parkingBoy.park(car3);
+        Ticket ticket = parkingBoy.selectParkingLot().park(car);
+        Ticket ticket2 = parkingBoy.selectParkingLot().park(car2);
+        Ticket ticket3 = parkingBoy.selectParkingLot().park(car3);
         assertEquals(parkingLotId1, ticket.getParkingLotId());
         assertEquals(parkingLotId2, ticket2.getParkingLotId());
         assertEquals(parkingLotId1, ticket3.getParkingLotId());
