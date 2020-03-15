@@ -7,15 +7,20 @@ public class ParkingLot {
     private int space;
     private final ParkingLotId parkingLotId;
     private Set<Car> parkedCars = new HashSet<>();
+    private final Set<Ticket> tickets = new HashSet<>();
 
     public ParkingLot(int space, ParkingLotId parkingLotId) {
         this.space = space;
         this.parkingLotId = parkingLotId;
     }
 
-    public void park(Car car) {
+    public Ticket park(Car car) {
         limitationCheck();
         parkedCars.add(car);
+        String validationNumber = "any vn";
+        Ticket ticket = new Ticket(validationNumber, getId(), car);
+        tickets.add(ticket);
+        return ticket;
     }
 
     private void limitationCheck() {
@@ -34,6 +39,16 @@ public class ParkingLot {
 
     public Car takeBackCar(Car car) {
         parkedCars.remove(car);
+        return car;
+    }
+
+    public Car takeBackCar(Ticket ticket) {
+        if (!tickets.contains(ticket)) {
+            throw new ReceiptInvalidException();
+        }
+
+        Car car = takeBackCar(ticket.getCar());
+        tickets.remove(ticket);
         return car;
     }
 }
