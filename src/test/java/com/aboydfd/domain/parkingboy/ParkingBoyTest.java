@@ -1,7 +1,11 @@
-package com.aboydfd.domain.parkinglot;
+package com.aboydfd.domain.parkingboy;
 
 import com.aboydfd.domain.parkingboy.NaturalParkingOrder;
 import com.aboydfd.domain.parkingboy.ParkingBoy;
+import com.aboydfd.domain.parkinglot.Car;
+import com.aboydfd.domain.parkinglot.ParkingLot;
+import com.aboydfd.domain.parkinglot.ParkingLotId;
+import com.aboydfd.domain.parkinglot.Ticket;
 import org.junit.jupiter.api.Test;
 
 import static com.google.common.collect.Lists.newArrayList;

@@ -1,8 +1,9 @@
-package com.aboydfd.domain.parkinglot;
+package com.aboydfd.domain.parkingmanager;
 
 import com.aboydfd.domain.parkingboy.NaturalParkingOrder;
 import com.aboydfd.domain.parkingboy.ParkingBoy;
-import com.aboydfd.domain.parkingmanager.ParkingManager;
+import com.aboydfd.domain.parkinglot.ParkingLot;
+import com.aboydfd.domain.parkinglot.ParkingLotId;
 import org.junit.jupiter.api.Test;
 
 import static com.google.common.collect.Lists.newArrayList;
@@ -10,7 +11,7 @@ import static org.junit.jupiter.api.Assertions.assertNotNull;
 
 public class ParkingManagerTest {
     @Test
-    void created_parking_manager___find_a_parking_boy___parking_boy_returned() {
+    void at_least_1_parking_boy_available___find_a_parking_boy___parking_boy_returned() {
         ParkingLotId parkingLotId1 = new ParkingLotId("pli 1");
         ParkingLot parkingLot = new ParkingLot(2, parkingLotId1);
         NaturalParkingOrder naturalParkingOrder =
