@@ -1,6 +1,5 @@
 package com.aboydfd.domain.parkingboy;
 
-
 import com.aboydfd.domain.parkinglot.*;
 
 import java.util.HashSet;
